@@ -30,21 +30,23 @@ public class Gizmo {
   }
 
   public int countElectronicsByMaker(String maker) {
-        int count = 0;
-        for (Gizmo gizmo : purchases) {
-            if (gizmo.isElectronic() && gizmo.getMaker().equals(maker)) {
-                count++;
-            }
+    int count = 0;
+    for (Gizmo gizmo : purchases) {
+        if (gizmo.isElectronic() && gizmo.getMaker().equals(maker)) {
+            count++;
         }
-        return count;
     }
+    return count;
+  }
 
-    public boolean hasAdjacentEqualPair() {
-        for (int i = 0; i < purchases.size() - 1; i++) {
-            if (purchases.get(i).equals(purchases.get(i + 1))) {
-                return true;
-            }
+  public boolean hasAdjacentEqualPair() {
+    for (int i = 0; i < purchases.size() - 1; i++) {
+        Gizmo current = purchases.get(i);
+        Gizmo next = purchases.get(i + 1);
+        if (current.equals(next)) {
+            return true;
         }
-        return false;
     }
+    return false;
+  }
 }
