@@ -2,25 +2,21 @@ public class Gizmo {
   private String maker;
   private boolean isElec;
   
-  /** Returns the name of the manufacturer of this Gizmo. */
   public String getMaker() {
     return maker;
   }
   
-  /** Returns true if this Gizmo is electronic, and false
-  * otherwise.
-  */
   public boolean isElectronic() {
     return isElec;
   }
   
-  /** Returns true if this Gizmo is equivalent to the Gizmo
-  * object represented by the
-  * parameter, and false otherwise.
-  */
   public boolean equals(Object other) {
-    boolean sameMaker = maker.equals(((Gizmo)other).getMaker());
-    boolean bothElec = isElec == ((Gizmo)other).isElectronic();
+    if (!(other instanceof Gizmo)) {
+      return false;
+    }
+    Gizmo otherGizmo = (Gizmo) other;
+    boolean sameMaker = this.maker.equals(otherGizmo.getMaker());
+    boolean bothElec = this.isElec == otherGizmo.isElectronic();
     return sameMaker && bothElec;
   }
   
@@ -28,7 +24,17 @@ public class Gizmo {
     maker = s;
     isElec = e;
   }
+}
 
+import java.util.ArrayList;
+
+public class OnlinePurchaseManager {
+  private ArrayList<Gizmo> purchases;
+
+  public OnlinePurchaseManager(ArrayList<Gizmo> purchases) {
+    this.purchases = purchases;
+  }
+  
   public int countElectronicsByMaker(String maker) {
     int count = 0;
     for (Gizmo gizmo : purchases) {
